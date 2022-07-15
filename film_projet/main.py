@@ -77,7 +77,7 @@ def delete_comment(comment_index: int, db: Session = Depends(get_db)):
     return Response(status_code=status.HTTP_200_OK)
 
 
-@app.delete("/delete{index}")
+@app.delete("/delete/{index}")
 def delete_film(index: int, db: Session = Depends(get_db)):
     try:
         service.delete_film(db, index)
