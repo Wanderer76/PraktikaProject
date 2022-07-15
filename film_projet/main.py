@@ -43,8 +43,14 @@ def create_film(film: schemas.FilmCreate, db: Session = Depends(get_db)):
 
 
 @app.get("/from_ivi/{film_id}")
-def get_from_ivi(film_id: int, db: Session = Depends(get_db)):
-    service.get_from_kinopoisk(db, film_id)
+def get_from_ivi_by_film_id(film_id: int, db: Session = Depends(get_db)):
+    service.get_from_ivi_by_id(db, film_id)
+    return Response(status_code=status.HTTP_201_CREATED)
+
+
+@app.get("/from_ivi/year/{year}")
+def get_from_ivi_by_year(year: int, db: Session = Depends(get_db)):
+    service.get_from_ivi_by_year(db, year)
     return Response(status_code=status.HTTP_201_CREATED)
 
 
